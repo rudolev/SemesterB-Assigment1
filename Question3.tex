@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+
+\title{Asymptotic Analysis of Recurrence Relations}
+\author{}
+\date{}
+\maketitle
+
+\section*{Solution}
+
+\subsection*{1. \( T(n) = 4T(n/2) + n \)}
+Using the Master Theorem, we compare with the recurrence form:
+\[
+T(n) = aT(n/b) + f(n),
+\]
+where \( a = 4 \), \( b = 2 \), and \( f(n) = n \).
+
+We check the condition \( f(n) = O(n^c) \) where \( c = \log_b a = \log_2 4 = 2 \).
+Since \( f(n) = O(n^1) \) and \( n^1 = O(n^2) \), Case 1 of the Master Theorem applies:
+\[
+T(n) = \Theta(n^2).
+\]
+
+\subsection*{2. \( T(n) = T(3n/7) + 1 \)}
+This recurrence can be solved using the iterative method:
+\begin{align*}
+T(n) &= T(3n/7) + 1 \\
+&= T(9n/49) + 1 + 1 \\
+&= \dots \\
+&= T(3^k n / 7^k) + k.
+\end{align*}
+Stopping when \( n = 1 \), we find \( k = \log_{7/3} n \), leading to:
+\[
+T(n) = \Theta(\log n).
+\]
+
+\subsection*{3. \( T(n) = 6T(n/2) + n^4 \log n \)}
+Here, \( a = 6 \), \( b = 2 \), and \( f(n) = n^4 \log n \).
+\[
+c = \log_2 6 \approx 2.585.
+\]
+Since \( f(n) = n^4 \log n = \Omega(n^{4 - \epsilon}) \) for small \( \epsilon \), we use the Master Theorem’s Case 3 with the regularity condition, leading to:
+\[
+T(n) = \Theta(n^4 \log n).
+\]
+
+\subsection*{4. \( T(n) = 8T(n/2) + n^4 + 3n^3 \log n \)}
+Here, \( a = 8 \), \( b = 2 \), and \( f(n) = n^4 + 3n^3 \log n \).
+\[
+c = \log_2 8 = 3.
+\]
+Since \( f(n) = n^4 + 3n^3 \log n = \Omega(n^{4-\epsilon}) \) for small \( \epsilon \), the dominating term is \( n^4 \). By the Master Theorem, Case 3 applies:
+\[
+T(n) = \Theta(n^4).
+\]
+
+\subsection*{5. \( T(n) = T(\sqrt{n}) + n \)}
+Using the recursion tree method:
+\begin{align*}
+T(n) &= T(n^{1/2}) + n \\
+&= T(n^{1/4}) + n^{1/2} + n \\
+&= \dots \\
+&= T(1) + n + n^{1/2} + n^{1/4} + \dots.
+\end{align*}
+The sum approximates to \( O(n) \), so we conclude:
+\[
+T(n) = \Theta(n).
+\]
+
+\end{document}
