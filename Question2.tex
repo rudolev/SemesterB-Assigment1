@@ -104,64 +104,8 @@ Since \( \log c \) is a constant, we have:
 
 \section*{6. \( \log^k(n) \in O(n^\epsilon) \) for constants \( k \geq 1 \) and \( 1 > \epsilon > 0 \) }
 
-For all constants \( k \geq 1 \) and \( 1 > \epsilon > 0 \), we need to prove that:
+?
 
-\[
-\log^k(n) \in O(n^\epsilon).
-\]
-
-This means there exist constants \( c > 0 \) and \( n_0 \) such that:
-
-\[
-\log^k(n) \leq c n^\epsilon, \quad \forall n \geq n_0.
-\]
-
-By definition, a function \( f(n) \) belongs to \( O(g(n)) \) if there exist positive constants \( c \) and \( n_0 \) such that:
-
-\[
-f(n) \leq c g(n), \quad \forall n \geq n_0.
-\]
-
-Thus, we need to show that for sufficiently large \( n \), we can bound \( \log^k(n) \) by \( c n^\epsilon \).
-
-It is known that for sufficiently large n:
-
-\[
-\log(n) \leq n^{\epsilon / k}.
-\]
-
-Raising both sides to the power of \( k \):
-
-\[
-\log^k(n) \leq \left(n^{\epsilon / k} \right)^k = n^\epsilon.
-\]
-
-Thus, we obtain:
-
-\[
-\log^k(n) \leq n^\epsilon.
-\]
-
-Thus, by the definition of Big-O, we conclude:
-
-\[
-\log^k(n) \in O(n^\epsilon).
-\]
-
-\section*{7. \( n^k \in O((1+\epsilon)^n) \) for constants \( k \) and \( \epsilon > 0 \) (4 points)}
-
-We need to show:
-
-\[
-n^k = O((1+\epsilon)^n).
-\]
-
-For large \( n \), exponential functions grow faster than polynomial functions. Taking limits:
-
-\[
-\lim_{n \to \infty} \frac{n^k}{(1+\epsilon)^n} = 0.
-\]
-
-Thus, \( n^k \in O((1+\epsilon)^n) \), proving the claim.
-
+\section*{7. \( n^k \in O((1+\epsilon)^n) \) for constants \( k \) and \( \epsilon > 0 \) }
+?
 \end{document}
