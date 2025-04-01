@@ -1,0 +1,169 @@
+\documentclass[a4paper]{article}
+
+%%%%%%%% CREATE DOCUMENT STRUCTURE %%%%%%%%
+%% Language and font encoding
+\usepackage[english]{babel}
+% \usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+%\usepackage{algo}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{float}
+
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+
+\bibliographystyle{plainurl}% the mandatory bibstyle
+
+% %% Useful packages
+\usepackage{amssymb}
+\usepackage{algorithm}
+% \usepackage{algorithmic}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{appendix}
+\usepackage{stmaryrd}
+\usepackage[super]{nth}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{sectsty}
+\usepackage{apacite}
+\usepackage{float}
+\usepackage{titling} 
+\usepackage{blindtext}
+\usepackage{enumerate}
+\usepackage{amsbsy}
+\usepackage{makecell}
+\usepackage[square,sort,comma,numbers]{natbib}
+\usepackage[table, dvipsnames]{xcolor}
+\usepackage[framemethod=tikz]{mdframed}
+\definecolor{CB_pink}{HTML}{882255}
+\definecolor{CB_green}{HTML}{117733}
+\definecolor{CB_blue}{HTML}{332288}
+
+\newtheoremstyle{remarksStyle}% 〈name〉
+    {1.5em}% 〈Space above〉1
+    {3pt}% 〈Space below 〉1
+    {\rmfamily}% 〈Body font 〉
+    {}% 〈Indent amount 〉2
+    {\rmfamily\bfseries\itshape}% 〈Theorem head font 〉
+    {:}% 〈Punctuation after theorem head 〉
+    {0.5em}% 〈Space after theorem head 〉3
+    {}% 〈Theorem head spec (can be left empty, meaning ‘normal’ )〉
+\theoremstyle{remarksStyle}
+\newtheorem*{observation}{Observation}
+\newtheorem*{remark}{Remark}
+\newtheorem*{definition}{Definition}
+
+\newtheoremstyle{questionStyle}% 〈name〉
+    {1.5em}% 〈Space above〉1
+    {3pt}% 〈Space below 〉1
+    {\rmfamily}% 〈Body font 〉
+    {}% 〈Indent amount 〉2
+    {\rmfamily\bfseries\color{CB_pink}}% 〈Theorem head font 〉
+    {:}% 〈Punctuation after theorem head 〉
+    {0.5em}% 〈Space after theorem head 〉3
+    {}% 〈Theorem head spec (can be left empty, meaning ‘normal’ )〉
+\theoremstyle{questionStyle}
+\newtheorem{question}{Question}
+
+\newtheoremstyle{answerStyle}% 〈name〉
+    {3pt}% 〈Space above〉1
+    {3pt}% 〈Space below 〉1
+    {\rmfamily}% 〈Body font 〉
+    {8pt}% 〈Indent amount 〉2
+    {\rmfamily\bfseries\color{CB_green}}% 〈Theorem head font 〉
+    {:}% 〈Punctuation after theorem head 〉
+    {0.5em}% 〈Space after theorem head 〉3
+    {}% 〈Theorem head spec (can be left empty, meaning ‘normal’ )〉
+\theoremstyle{answerStyle}
+\newtheorem{answer}{Answer}
+
+\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=CB_blue,innerleftmargin=6pt,
+innerrightmargin=6pt,innertopmargin=6pt,innerbottommargin=6pt,backgroundcolor=Gray!15]{boxxed}
+
+
+%%%%%%%% DOCUMENT %%%%%%%%
+\begin{document}
+
+%%%% Title Page
+
+
+
+\begin{answer}
+    Fill in the table below (\textbf{The Proof elaboration in this question is according to the example given above}):
+\end{answer}
+
+\begin{center}
+\begin{tabular}{||c | c ||} 
+ \hline
+ line number & The functions \\ [0.5ex] 
+ \hline\hline
+ 1 & $f_1, f_2$ \\ 
+ \hline
+ 2 & $f_9$ \\
+ \hline
+ 3 & $ f_8 $\\
+ \hline
+ 4 &  $ f_3, f_10$\\
+ \hline
+ 5 & $ f_7 $\\
+ \hline
+ 6 & $ f_5 $\\
+ \hline
+ 7 & $ f_4 $\\
+ \hline
+ 8 & $ f_6 $\\
+ \hline
+ 9 & \\
+ \hline
+  10 & \\
+ \hline
+\end{tabular}
+\end{center}
+\end{question}
+
+\begin{boxxed}
+
+\begin{itemize}
+   \item  $f_{1} \in \ \Theta(f_{2}):$
+      \begin{itemize}
+          \item   $f_{1} \in \ O(f_{2}): \ 1 \leq c(1034)$ for $n \ge n_0 =1$ and $c=1$.
+         \item $f_{1} \in \ \Omega(f_{2}): \ 1 \geq c(1034)$ for $n \ge n_0 =1$ and $c=\frac{1}{10000}$.
+     \end{itemize} 
+
+    \item $f_{1} \in \ O(f_{9}): \ 1 \leq c\log(n^\frac{1}{3}) = \frac{c}{3} \log(n) $ for $n \ge n_0 =8$ and $c=1$.
+
+    \item $f_{9} \in \ O(f_{8}): \ \log(n^\frac{1}{3}) \leq c \cdot \log(4^n \cdot n^8) = c \cdot n \log(4) + 8 \log(n) = c \cdot (2n + 8\log(n)) $ for $n \ge n_0 =2$ and $c=1$.
+
+    \item $f_{8} \in \ O(f_{3}): \ \log(4^n \cdot n^8) = 2n + 8\log(n) \leq cn^2 $ for $n \ge n_0 =8$ and $c=1$.
+    
+    \item  $f_{10} \in \ \Theta(f_{3}):$
+      \begin{itemize}
+          \item   $f_{10} \in \ O(f_{3}): \ \frac{6n^2}{8} - 10 \leq cn^2 $ for $n \ge n_0 =1$ and $c=1$.
+         \item $f_{10} \in \ \Omega(f_{3}): \ \frac{6n^2}{8} - 10 \geq cn^2$ for $n \ge n_0 =10$ and $c=\frac{1}{8}$.
+     \end{itemize} 
+
+    \item $f_{3} \in \ O(f_{7}): \ n^2 \leq c \cdot 2^n $ for $n \ge n_0 =5$ and $c=1$.
+    
+    \item $f_{7} \in \ O(f_{5}): \ 2^n \leq c \cdot 2^{n + \log(n) -10} = c \cdot 2^{n-10} \cdot 2^{log(n)} = n \cdot 2^{n-10} $ for $n \ge n_0 =1$ and $c=2^{11}$.
+
+    \item $f_{5} \in \ O(f_{4}): \ 2^{n + \log(n) -10} \leq c \cdot n^n $ for $n \ge n_0 =10$ and $c=1$.
+
+    \item $f_{4} \in \ O(f_{6}): \ n^n \leq c \cdot 2^{(2^n)} $ for $n \ge n_0 =5$ and $c=3$.
+    
+
+\end{itemize} 
+
+\end{boxxed}
+
+
+\newpage
+
+
+
+\end{document}
