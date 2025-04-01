@@ -1,0 +1,26 @@
+\documentclass{article}
+% Packages for code formatting
+\usepackage{listings} % For formatted code
+\usepackage{minted}   % For syntax-highlighted code (requires -shell-escape)
+\usepackage{verbatim} % For simple verbatim text
+
+\begin{document}
+
+\section{Answer 5:}
+Pseudocode of the algorithm:
+\begin{minted}{python}
+def question_5(A, B):
+    mem_array = new Array[2N] # filled with zeros, takes O(1) time and O(N) space.
+    for number in A: # runs N times, so this for loop is O(N) overall.
+        mem_array[number] = 1 # done in O(1)
+
+    counter = 0
+    for num in B: # runs N times, so this for loop is O(N) overall.
+        if mem_array[num] == 1: # done in O(1)
+            counter = counter + 1
+
+    return counter # overall, the function runs in O(N) + O(N) = O(n)
+        
+\end{minted}
+
+\end{document}
