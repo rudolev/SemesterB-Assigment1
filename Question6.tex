@@ -1,0 +1,28 @@
+\documentclass{article}
+% Packages for code formatting
+\usepackage{listings} % For formatted code
+\usepackage{minted}   % For syntax-highlighted code (requires -shell-escape)
+\usepackage{verbatim} % For simple verbatim text
+
+\begin{document}
+
+\section{Answer 6:}
+Pseudocode of the algorithm:
+\begin{minted}{python}
+def question_5(A, B):
+    # sort using merge sort, O(n*log(n)) time complexity and O(n) memory complexity
+    sortedA = sort(A) 
+    
+    counter = 0
+    # runs n times, so this for loop is O(n*log(n)) time complexity overall.
+    for number in B: 
+        # done in O(log(n)) time complexity
+        if binary_search(sortedA, number) == true: 
+            counter = counter + 1
+
+    # overall, this function runs in O(n*log(n)) time complexity and O(n) memory complexity
+    return counter 
+        
+\end{minted}
+
+\end{document}
