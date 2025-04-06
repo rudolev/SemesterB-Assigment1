@@ -413,7 +413,24 @@ Since \( \log c \) is a constant, we have:
 
 \section*{6. \( \log^k(n) \in O(n^\epsilon) \) for constants \( k \geq 1 \) and \( 1 > \epsilon > 0 \) }
 
-?
+\item \begin{center} $\log^k(n) \leq c \cdot n ^\epsilon$ \end{center}
+now we log both sides: 
+\begin{center}
+$\log(\log^k(n)) \leq log(c \cdot n^ \epsilon) = \log(c) + \epsilon \cdot 
+log(n)$ \end{center}
+We choose $ c = 1$, and we will now show that there exists $n_0$ such
+that for every $n > n_0$ the inequality holds. 
+\begin{center} 
+\item $k \cdot \log(\log((n)) \leq \epsilon \cdot \log(n) + 0$ 
+\item $\frac{k}{\epsilon} \leq \frac{\log(n)}{\log(\log(n))}$
+\end{center}
+We mark $x = \frac{k}{\epsilon}$ and $n_0 = \lceil 2^{2^x} \rceil$:
+\begin{center} 
+\item $x \leq \frac{log(2^{2^x})}{\log(\log(2^{2^x}))} = \frac{2^x}{x}$ 
+\end{center}
+According to what we know about $\epsilon$ and k, $ 1 \leq x$ so the inequality holds.
+
+
 
 \section*{7. \( n^k \in O((1+\epsilon)^n) \) for constants \( k \) and \( \epsilon > 0 \) }
 ?
