@@ -1,0 +1,60 @@
+\begin{answer}
+    Fill in the table and calculate the sum $T(n)$ below (do not fill in the grayed-out entries):
+\begin{center}    
+\begin{tabular}{||c | c | c | c ||}
+ \hline
+ Line number & \makecell{Number of times \\ the line is performed} & Cost of a single repetition & Total cost of this line \\ [0.5ex]
+ \hline\hline
+ 1 & $\Theta(1)$ & $\Theta(1)$ & $\Theta (1)$  \\
+ \hline
+ 2 & $\Theta(1)$ & $\Theta(1)$ & $\Theta (1)$  \\
+ \hline
+ 3 & $\Theta(1)$ & $\Theta(1)$ & $\Theta (1)$  \\
+  \hline
+ 4 & $\Theta(n)$ & $\Theta(1)$ & $\Theta (n)$  \\
+   \hline
+ 5 & $\Theta(n)$ & $\Theta(1)$ & $\Theta (n)$  \\
+  \hline
+ 6 & $\Theta(n)$ & $\Theta(1)$ & $\Theta (n)$  \\
+    \hline
+ 7 & $\Theta(n)$ & $\Theta(1)$ & $\Theta (n)$  \\
+ \hline
+ 8 & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} \\
+ \hline
+ 9 & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} \\
+ \hline
+ 10 & $\Theta(1)$ & $\Theta(1)$ & $\Theta (1)$  \\
+ \hline
+ 11 & $\Theta(1)$ & $\Theta(1)$ & $\Theta (1)$  \\
+ \hline
+ 12 & $\Theta(1)$ & $\Theta(1)$ & $\Theta (1)$  \\
+ \hline
+ 13 & $\Theta(1)$ & $\Theta(1)$ & $\Theta (1)$  \\
+ \hline
+ 14 & $\Theta(1)$ & $\Theta(1)$ & $\Theta (1)$  \\
+ \hline
+ 15 & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} \\
+ \hline
+ 16 & $\Theta(1)$ & $\Theta(1)$ & $\Theta (1)$  \\
+ \hline
+ 17 & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} \\
+ \hline
+ 18 & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} \\
+ \hline
+ 19 & $\Theta(1)$ & $\Theta(1)$ & $\Theta (1)$  \\
+ \hline
+ Total & \cellcolor{Gray} & \cellcolor{Gray} & $\Theta (n)$  \\
+ \hline
+\end{tabular}
+\end{center}
+\item In the worst case, the "right" element is always the smallest or largest element in the array, leading to a seperation of the array to 2 sub arrays of size 1, and $n - 1$. Which leads to the following time complexity formula:
+\[ T(n) = T(n-1) + n \]
+\item Proof by induction that $ T(n) \in \theta(n^2)$:
+\item induction base: $n = 1$:
+\item $ 0 \leq c_1 \cdot 1^2 \leq T(1) = 1 \leq c_2 \cdot 1^2$ so $ c_1 = 1, c_2 = 1$
+
+\item Induction step
+
+\item $T(n) = T(n - 1) - n = T(n-2) + n - 1 +n = T(n - 3) + n- 2 +2n-1 = ... = T(n-i) + i \cdot n - \sum_{k=1}^{i-1} k = T(n-i) + i \cdot n - \frac{i \cdot (i-1)}{2}$
+\item We want to find the i that will bring us to T(1) - the stopping condition: $ i = n - 1 $.
+\item $T(n) = T(1) + n^2 - n - \frac{n^2}{2} + n + \frac{n}{2} - 1= T(1) + \frac{n^2}{2} + \frac{n}{2} - 1= \theta(1) + \theta(n^2) + \theta(n) = \theta(n^2)$
