@@ -45,6 +45,15 @@
 \definecolor{CB_green}{HTML}{117733}
 \definecolor{CB_blue}{HTML}{332288}
 
+% Packages for code formatting
+\usepackage{listings} % For formatted code
+\usepackage{minted}   % For syntax-highlighted code (requires -shell-escape)
+\usepackage{verbatim} % For simple verbatim text
+
+% Packages for trees formatting
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+
 \newtheoremstyle{remarksStyle}% 〈name〉
     {1.5em}% 〈Space above〉1
     {3pt}% 〈Space below 〉1
@@ -667,7 +676,26 @@ Output:  4 \hspace{1cm} (\textit{9 appears in $A$ and appears once in $B$,  7 ap
 \vspace{0.5 cm}
 
 \begin{answer}
-    You should include the algorithm description, run-time and additional memory analysis:
+    Pseudocode of the algorithm:
+\begin{minted}{python}
+def question_5(A, B):
+    """
+    This pseudocode uses an additional array to indicate in O(1) time
+    whether a number is in array A. the algorithm then loops throw the
+    numbers in array B in order to perform the counting.
+    """
+    mem_array = new Array[2N] # filled with zeros, takes O(1) time and O(N) space.
+    for number in A: # runs N times, so this for loop is O(N) overall.
+        mem_array[number] = 1 # done in O(1)
+
+    counter = 0
+    for num in B: # runs N times, so this for loop is O(N) overall.
+        if mem_array[num] == 1: # done in O(1)
+            counter = counter + 1
+
+    return counter # overall, the function runs in O(N) + O(N) = O(n)
+        
+\end{minted}
 \end{answer}
 
 \vspace{0.75 cm}
@@ -679,7 +707,27 @@ Solve question \ref{q5:a}, where the value of each element in the arrays is a na
 \vspace{0.5 cm}
 
 \begin{answer}
-    You should include the algorithm description, run-time, and additional memory analysis:
+    Pseudocode of the algorithm:
+\begin{minted}{python}
+def question_6(A, B):
+    """
+    This pseudocode is sorting array A usgin merge sort, and then performs
+    binary search on every element of array B to check if it exists in A.
+    """
+    # sort using merge sort, O(n*log(n)) time complexity and O(n) memory complexity
+    sortedA = sort(A) 
+    
+    counter = 0
+    # runs n times, so this for loop is O(n*log(n)) time complexity overall.
+    for number in B: 
+        # done in O(log(n)) time complexity
+        if binary_search(sortedA, number) == true: 
+            counter = counter + 1
+
+    # overall, this function runs in O(n*log(n)) time complexity and O(n) memory complexity
+    return counter 
+        
+\end{minted}
 \end{answer}
 
 \newpage
@@ -689,7 +737,85 @@ The following sequence of keys has been added to an AVL tree.
 $< 5, \ 6, \ 12, \ 10, 8 >$. 
 \end{question}
 \begin{answer}
-Draw the AVL tree after each addition.
+\item
+\begin{center}
+        \vtop{
+            \begin{tikzpicture}[
+                level 1/.style={sibling distance=20mm}, % Distance between sibling nodes
+                level 2/.style={sibling distance=15mm}, % Distance between sibling nodes
+                every node/.style={circle, draw, fill=white, font=\footnotesize} % Circle for nodes
+                ]
+                \node {5};
+            \end{tikzpicture}
+        }
+    \end{center}
+        \vspace{3mm}
+        % Second TikZ picture (Node 6 with a right child) - aligned to top
+    \begin{center}    
+        \vtop{
+            \begin{tikzpicture}[
+                every node/.style={circle, draw, fill=white, font=\footnotesize}, % Circle for nodes
+                level 1/.style={sibling distance=15mm}, % Adjust sibling distance
+                edge from parent/.style={draw, thick} % Styling for edges
+                ]
+                \node {5}
+                   child[shift={(1,0)}] {node {6}};
+            \end{tikzpicture}
+        }
+    \end{center}
+        \vspace{3mm}
+    \begin{center}     
+        % Third TikZ picture (Node 6 with two children) - aligned to top
+        \vtop{
+            \begin{tikzpicture}[
+                level 1/.style={sibling distance=20mm}, % Distance between sibling nodes
+                level 2/.style={sibling distance=15mm}, % Distance between sibling nodes
+                every node/.style={circle, draw, fill=white, font=\footnotesize} % Circle for nodes
+                ]
+                \node {6}
+                child{node {5}}
+                child{node {12}};
+            \end{tikzpicture}
+        }
+    \end{center}
+          \vspace{3mm}
+    \begin{center}
+        \vtop{
+            \begin{tikzpicture}[
+            level 1/.style={sibling distance=20mm}, % Distance between sibling nodes
+            level 2/.style={sibling distance=15mm}, % Distance between sibling nodes
+            every node/.style={circle, draw, fill=white, font=\footnotesize} % Circle for nodes
+            ]
+        
+                % Root node with only a right child positioned explicitly on the right
+                \node {6}
+                child{node {5}}
+                child{node {12}
+                    child[shift={(-1,0)}] {node {10}}};
+        
+            \end{tikzpicture}
+        }
+    \end{center}
+         \vspace{3mm}
+    \begin{center}
+         \vtop{
+             \begin{tikzpicture}[
+            level 1/.style={sibling distance=20mm}, % Distance between sibling nodes
+            level 2/.style={sibling distance=15mm}, % Distance between sibling nodes
+            every node/.style={circle, draw, fill=white, font=\footnotesize} % Circle for nodes
+            ]
+        
+                % Root node with only a right child positioned explicitly on the right
+                \node {6}
+                child{node {5}}
+                child{node {10}
+                    child{node {8}}
+                    child{node {12}}
+                    };
+        
+            \end{tikzpicture}
+        }
+    \end{center}
 
 % \includegraphics[width=0.8\textwidth]{AAA.png}\\[1cm]
 \end{answer}
@@ -703,6 +829,267 @@ Consider the following set $S$ of keys: $\{ 1,2,3,4,5,6,7 \} $
              \item[(i)] maximum height.
               \item[(ii)]  minimum height.
            \end{enumerate}
+
+
+    \item[(i)] maximum height.
+    $< 3, \ 2, \ 4, \ 5, \ 6, \ 7,\ 1>$
+
+    \begin{center}
+        \vtop{
+            \begin{tikzpicture}[
+                level 1/.style={sibling distance=20mm}, % Distance between sibling nodes
+                level 2/.style={sibling distance=15mm}, % Distance between sibling nodes
+                every node/.style={circle, draw, fill=white, font=\footnotesize} % Circle for nodes
+                ]
+                \node {3};
+            \end{tikzpicture}
+        }
+    \end{center}
+        \vspace{3mm}
+        % Second TikZ picture (Node 6 with a right child) - aligned to top
+    \begin{center}    
+        \vtop{
+            \begin{tikzpicture}[
+                every node/.style={circle, draw, fill=white, font=\footnotesize}, % Circle for nodes
+                level 1/.style={sibling distance=15mm}, % Adjust sibling distance
+                edge from parent/.style={draw, thick} % Styling for edges
+                ]
+                \node {3}
+                   child[shift={(-1,0)}] {node {2}};
+            \end{tikzpicture}
+        }
+    \end{center}
+        \vspace{3mm}
+    \begin{center}     
+        % Third TikZ picture (Node 6 with two children) - aligned to top
+        \vtop{
+            \begin{tikzpicture}[
+                level 1/.style={sibling distance=20mm}, % Distance between sibling nodes
+                level 2/.style={sibling distance=15mm}, % Distance between sibling nodes
+                every node/.style={circle, draw, fill=white, font=\footnotesize} % Circle for nodes
+                ]
+                \node {3}
+                child{node {2}}
+                child{node {4}};
+            \end{tikzpicture}
+        }
+    \end{center}
+          \vspace{3mm}
+    \begin{center}
+        \vtop{
+            \begin{tikzpicture}[
+            level 1/.style={sibling distance=20mm}, % Distance between sibling nodes
+            level 2/.style={sibling distance=15mm}, % Distance between sibling nodes
+            every node/.style={circle, draw, fill=white, font=\footnotesize} % Circle for nodes
+            ]
+        
+                % Root node with only a right child positioned explicitly on the right
+                \node {3}
+                child{node {2}}
+                child{node {4}
+                    child[shift={(1,0)}] {node {5}}};
+        
+            \end{tikzpicture}
+        }
+    \end{center}
+         \vspace{3mm}
+         
+    \begin{center}
+    First rotation:
+         \vtop{
+         \vspace{3mm}
+             \begin{tikzpicture}[
+            level 1/.style={sibling distance=20mm}, % Distance between sibling nodes
+            level 2/.style={sibling distance=15mm}, % Distance between sibling nodes
+            every node/.style={circle, draw, fill=white, font=\footnotesize} % Circle for nodes
+            ]
+        
+                % Root node with only a right child positioned explicitly on the right
+                \node {3}
+                child{node {2}}
+                child{node {5}
+                    child{node {4}}
+                    child{node {6}}};
+        
+            \end{tikzpicture}
+        }
+    \end{center}
+    \vspace{3mm}
+
+    \begin{center}
+    Second rotation:
+         \vtop{
+         \vspace{3mm}
+             \begin{tikzpicture}[
+            level 1/.style={sibling distance=20mm}, % Distance between sibling nodes
+            level 2/.style={sibling distance=15mm}, % Distance between sibling nodes
+            every node/.style={circle, draw, fill=white, font=\footnotesize} % Circle for nodes
+            ]
+        
+                % Root node with only a right child positioned explicitly on the right
+                \node {5}
+                child{node {3}
+                    child{node {2}}
+                    child{node {4}}}
+                child{node {6}
+                    child[shift={(1,0)}] {node {7}}};
+        
+            \end{tikzpicture}
+        }
+    \end{center}
+
+    \vspace{3mm}
+
+    \begin{center}
+         \vtop{
+             \begin{tikzpicture}[
+            level 1/.style={sibling distance=20mm}, % Distance between sibling nodes
+            level 2/.style={sibling distance=15mm}, % Distance between sibling nodes
+            every node/.style={circle, draw, fill=white, font=\footnotesize} % Circle for nodes
+            ]
+        
+                % Root node with only a right child positioned explicitly on the right
+                \node {5}
+                child{node {3}
+                    child{node {2}
+                    child[shift={(-0.8,0)}] {node {1}}}
+                    child{node {4}}}
+                child{node {6}
+                    child[shift={(1,0)}] {node {7}}};
+        
+            \end{tikzpicture}
+        }
+    \end{center}
+    
+    \item[(ii)]  minimum height.
+    $< 2, \ 1, \ 3, \ 4, \ 6, \ 5,\ 7>$
+
+    \begin{center}
+        \vtop{
+            \begin{tikzpicture}[
+                level 1/.style={sibling distance=20mm}, % Distance between sibling nodes
+                level 2/.style={sibling distance=15mm}, % Distance between sibling nodes
+                every node/.style={circle, draw, fill=white, font=\footnotesize} % Circle for nodes
+                ]
+                \node {2};
+            \end{tikzpicture}
+        }
+    \end{center}
+        \vspace{3mm}
+        % Second TikZ picture (Node 6 with a right child) - aligned to top
+    \begin{center}    
+        \vtop{
+            \begin{tikzpicture}[
+                every node/.style={circle, draw, fill=white, font=\footnotesize}, % Circle for nodes
+                level 1/.style={sibling distance=15mm}, % Adjust sibling distance
+                edge from parent/.style={draw, thick} % Styling for edges
+                ]
+                \node {2}
+                   child[shift={(-1,0)}] {node {1}};
+            \end{tikzpicture}
+        }
+    \end{center}
+        \vspace{3mm}
+    \begin{center}     
+        % Third TikZ picture (Node 6 with two children) - aligned to top
+        \vtop{
+            \begin{tikzpicture}[
+                level 1/.style={sibling distance=20mm}, % Distance between sibling nodes
+                level 2/.style={sibling distance=15mm}, % Distance between sibling nodes
+                every node/.style={circle, draw, fill=white, font=\footnotesize} % Circle for nodes
+                ]
+                \node {2}
+                child{node {1}}
+                child{node {3}};
+            \end{tikzpicture}
+        }
+    \end{center}
+          \vspace{3mm}
+    \begin{center}
+        \vtop{
+            \begin{tikzpicture}[
+            level 1/.style={sibling distance=20mm}, % Distance between sibling nodes
+            level 2/.style={sibling distance=15mm}, % Distance between sibling nodes
+            every node/.style={circle, draw, fill=white, font=\footnotesize} % Circle for nodes
+            ]
+        
+                % Root node with only a right child positioned explicitly on the right
+                \node {2}
+                child{node {1}}
+                child{node {3}
+                    child[shift={(1,0)}] {node {4}}};
+        
+            \end{tikzpicture}
+        }
+    \end{center}
+    \vspace{1mm}
+         
+    \begin{center}
+    First rotation:
+         \vtop{
+         \vspace{1mm}
+             \begin{tikzpicture}[
+            level 1/.style={sibling distance=20mm}, % Distance between sibling nodes
+            level 2/.style={sibling distance=15mm}, % Distance between sibling nodes
+            every node/.style={circle, draw, fill=white, font=\footnotesize} % Circle for nodes
+            ]
+        
+                % Root node with only a right child positioned explicitly on the right
+                \node {2}
+                child{node {1}}
+                child{node {4}
+                    child{node {3}}
+                    child{node {6}}};
+        
+            \end{tikzpicture}
+        }
+    \end{center}
+    \vspace{1mm}
+    \begin{center}
+    Second rotation:
+         \vtop{
+         \vspace{1mm}
+             \begin{tikzpicture}[
+            level 1/.style={sibling distance=20mm}, % Distance between sibling nodes
+            level 2/.style={sibling distance=15mm}, % Distance between sibling nodes
+            every node/.style={circle, draw, fill=white, font=\footnotesize} % Circle for nodes
+            ]
+        
+                % Root node with only a right child positioned explicitly on the right
+                \node {4}
+                child{node {2}
+                    child{node {1}}
+                    child{node {3}}}
+                child{node {6}
+                    child[shift={(-0.5,0)}] {node {5}}};
+        
+            \end{tikzpicture}
+        }
+    \end{center}
+
+    \vspace{3mm}
+
+    \begin{center}
+         \vtop{
+             \begin{tikzpicture}[
+            level 1/.style={sibling distance=20mm}, % Distance between sibling nodes
+            level 2/.style={sibling distance=15mm}, % Distance between sibling nodes
+            every node/.style={circle, draw, fill=white, font=\footnotesize} % Circle for nodes
+            ]
+        
+                % Root node with only a right child positioned explicitly on the right
+                \node {4}
+                child{node {2}
+                    child{node {1}}
+                    child{node {3}}}
+                child{node {6}
+                    child[shift={(0.3,0)}] {node {5}}
+                    child{node {7}}};
+        
+            \end{tikzpicture}
+        }
+    \end{center}
+    
 \end{answer}
 
 
