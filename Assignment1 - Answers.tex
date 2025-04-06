@@ -150,7 +150,7 @@ Each of the students submitting this assignment must sign the following integrit
 \vspace{5ex}
 \begin{boxxed}
 \textcolor{CB_blue}{
-We, \textbf{\textit{Dolev Rubin}}, ID number \textbf{\textit{319127379}}, and \textbf{\textit{<Insert your name>}}, ID number \textbf{\textit{<Insert your ID>}} assert that the work we submitted is entirely our own.
+We, \textbf{\textit{Dolev Rubin}}, ID number \textbf{\textit{319127379}}, and \textbf{\textit{Hila Zuckerman}}, ID number \textbf{\textit{212735450}} assert that the work we submitted is entirely our own.
 We have not received any part from any other student in the class, nor did we give parts of it for others to use.
 We realize that if my work is found to contain code that is not originally our own, a formal case will be opened against us with the BGU disciplinary committee.
 }
@@ -331,7 +331,83 @@ Let $f(n)$ and $g(n)$ be asymptotically positive functions.
 \end{question}
 
 \begin{answer}
-    Replace with your answer.
+\item 
+\section*{1. \( n > \log n \) for all \( n \in N \) }
+
+We know that $n < 2^n$ for all $n \in N$, then: $\log(n) < log(2^n) = n \cdot \log(2) = n$
+
+\section*{2. Reflexivity: \( f(n) \in \Theta(f(n)) \) }
+
+By the definition of \(\Theta\)-notation, \( f(n) \in \Theta(f(n)) \) if there exist constants \( c_1, c_2 > 0 \) and \( n_0 \) such that:
+
+\[
+c_1 f(n) \leq f(n) \leq c_2 f(n) \quad \forall n \geq n_0.
+\]
+
+By choosing \( c_1 = 1 \) and \( c_2 = 1 \), the inequality holds in all cases, proving reflexivity.
+
+\section*{3. Transitivity: If \( f(n) \in \Theta(g(n)) \) and \( g(n) \in \Theta(h(n)) \), then \( f(n) \in \Theta(h(n)) \)}
+
+By the definition of $\Theta$:
+
+\[
+c_1 g(n) \leq f(n) \leq c_2 g(n),
+\]
+
+\[
+d_1 h(n) \leq g(n) \leq d_2 h(n).
+\]
+
+Now we will multiply the equation by the relevant constant on each side:
+
+\[
+(c_1 d_1) h(n) \leq f(n) \leq (c_2 d_2) h(n).
+\]
+
+Since \( c_1 d_1 \) and \( c_2 d_2 \) are positive constants, \( f(n) \in \Theta(h(n)) \).
+
+\section*{4. Transpose Symmetry: \( f(n) \in O(g(n)) \iff g(n) \in \Omega(f(n)) \)}
+
+By the definition of Big-O:
+
+\[
+f(n) \leq c g(n) \quad \text{for a constant } c > 0 \text{ and sufficiently large } n.
+\]
+
+Rewriting:
+
+\[
+g(n) \geq \frac{1}{c} f(n),
+\]
+
+which is the definition of \( g(n) \in \Omega(f(n)) \), proving the transpose symmetry. 
+
+\section*{5. If \( f(n) \in \Omega(g(n)) \) for increasing monotone functions, then \( \log f(n) \in \Omega(\log g(n)) \)}
+
+Since \( f(n) \in \Omega(g(n)) \), there exist constants \( c > 0 \) and \( n_0 \) such that:
+
+\[
+f(n) \geq c g(n), \quad \forall n \geq n_0.
+\]
+
+Taking logarithms:
+
+\[
+\log f(n) \geq \log (c g(n)) = \log c + \log g(n).
+\]
+
+Since \( \log c \) is a constant, we have:
+
+\[
+\log f(n) \in \Omega(\log g(n)).
+\]
+
+\section*{6. \( \log^k(n) \in O(n^\epsilon) \) for constants \( k \geq 1 \) and \( 1 > \epsilon > 0 \) }
+
+?
+
+\section*{7. \( n^k \in O((1+\epsilon)^n) \) for constants \( k \) and \( \epsilon > 0 \) }
+?
 \end{answer}
 
 \newpage
@@ -350,7 +426,66 @@ Find and prove an asymptotic tight bound $\Theta$ for $T(n)$ in each of the foll
 \end{question}
 
 \begin{answer}
-    Replace with your answer.
+\item
+    \subsection*{1. \( T(n) = 4T(n/2) + n \)}
+Using the Master Theorem, we compare with the recurrence form:
+\[
+T(n) = aT(n/b) + f(n),
+\]
+where \( a = 4 \), \( b = 2 \), and \( f(n) = n \).
+
+We check the condition \( f(n) = O(n^c) \) where \( c = \log_b a = \log_2 4 = 2 \).
+Since \( f(n) = O(n^1) \) and \( n^1 = O(n^2) \), Case 1 of the Master Theorem applies:
+\[
+T(n) = \Theta(n^2).
+\]
+
+\subsection*{2. \( T(n) = T(3n/7) + 1 \)}
+This recurrence can be solved using the iterative method:
+\begin{align*}
+T(n) &= T(3n/7) + 1 \\
+&= T(9n/49) + 1 + 1 \\
+&= \dots \\
+&= T(3^k n / 7^k) + k.
+\end{align*}
+Stopping when \( n = 1 \), we find \( k = \log_{7/3} n \), leading to:
+\[
+T(n) = \Theta(\log n).
+\]
+
+\subsection*{3. \( T(n) = 6T(n/2) + n^4 \log n \)}
+Here, \( a = 6 \), \( b = 2 \), and \( f(n) = n^4 \log n \).
+\[
+c = \log_2 6 \approx 2.585.
+\]
+Since \( f(n) = n^4 \log n = \Omega(n^{4 - \epsilon}) \) for small \( \epsilon \), we use the Master Theorem’s Case 3 with the regularity condition, leading to:
+\[
+T(n) = \Theta(n^4 \log n).
+\]
+
+\subsection*{4. \( T(n) = 8T(n/2) + n^4 + 3n^3 \log n \)}
+Here, \( a = 8 \), \( b = 2 \), and \( f(n) = n^4 + 3n^3 \log n \).
+\[
+c = \log_2 8 = 3.
+\]
+Since \( f(n) = n^4 + 3n^3 \log n = \Omega(n^{4-\epsilon}) \) for small \( \epsilon \), the dominating term is \( n^4 \). By the Master Theorem, Case 3 applies:
+\[
+T(n) = \Theta(n^4).
+\]
+
+\subsection*{5. \( T(n) = T(\sqrt{n}) + n \)}
+Using the recursion tree method:
+\begin{align*}
+T(n) &= T(n^{1/2}) + n \\
+&= T(n^{1/4}) + n^{1/2} + n \\
+&= \dots \\
+&= T(1) + n + n^{1/2} + n^{1/4} + \dots.
+\end{align*}
+The sum approximates to \( O(n) \), so we conclude:
+\[
+T(n) = \Theta(n).
+\]
+
 \end{answer}
 
 \vspace{2cm}
@@ -404,53 +539,63 @@ In addition, show the calculation of $T(n)$ as done in the lecture.
 \begin{answer}
     Fill in the table and calculate the sum $T(n)$ below (do not fill in the grayed-out entries):
 \begin{center}    
-\begin{tabular}{||c | c | c | c ||} 
+\begin{tabular}{||c | c | c | c ||}
  \hline
- Line number & \makecell{Number of times \\ the line is performed} & Cost of a single repetition & Total cost of this line \\ [0.5ex] 
+ Line number & \makecell{Number of times \\ the line is performed} & Cost of a single repetition & Total cost of this line \\ [0.5ex]
  \hline\hline
- 1 & $\Theta(1)$ & $\Theta(1)$ & $\Theta (1)$  \\ 
+ 1 & $\Theta(1)$ & $\Theta(1)$ & $\Theta (1)$  \\
  \hline
- 2 & & &  \\
+ 2 & $\Theta(1)$ & $\Theta(1)$ & $\Theta (1)$  \\
  \hline
- 3 & & & \\ 
+ 3 & $\Theta(1)$ & $\Theta(1)$ & $\Theta (1)$  \\
   \hline
- 4 & & & \\ 
+ 4 & $\Theta(n)$ & $\Theta(1)$ & $\Theta (n)$  \\
    \hline
- 5 & & & \\ 
+ 5 & $\Theta(n)$ & $\Theta(1)$ & $\Theta (n)$  \\
   \hline
- 6 & & & \\ 
+ 6 & $\Theta(n)$ & $\Theta(1)$ & $\Theta (n)$  \\
     \hline
- 7 & & & \\ 
+ 7 & $\Theta(n)$ & $\Theta(1)$ & $\Theta (n)$  \\
  \hline
- 8 & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} \\ 
+ 8 & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} \\
  \hline
- 9 & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} \\ 
+ 9 & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} \\
  \hline
- 10 & & & \\ 
+ 10 & $\Theta(1)$ & $\Theta(1)$ & $\Theta (1)$  \\
  \hline
- 11 & & & \\ 
+ 11 & $\Theta(1)$ & $\Theta(1)$ & $\Theta (1)$  \\
  \hline
- 12 & & & \\ 
+ 12 & $\Theta(1)$ & $\Theta(1)$ & $\Theta (1)$  \\
  \hline
- 13 & & & \\ 
+ 13 & $\Theta(1)$ & $\Theta(1)$ & $\Theta (1)$  \\
  \hline
-  14 & & & \\ 
+ 14 & $\Theta(1)$ & $\Theta(1)$ & $\Theta (1)$  \\
  \hline
- 15 & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} \\ 
+ 15 & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} \\
  \hline
- 16 & & & \\ 
+ 16 & $\Theta(1)$ & $\Theta(1)$ & $\Theta (1)$  \\
  \hline
  17 & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} \\
  \hline
  18 & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} \\
  \hline
- 19 & & & \\
+ 19 & $\Theta(1)$ & $\Theta(1)$ & $\Theta (1)$  \\
  \hline
- Total & \cellcolor{Gray} & \cellcolor{Gray} & $\Theta (?)$  \\ 
+ Total & \cellcolor{Gray} & \cellcolor{Gray} & $\Theta (n)$  \\
  \hline
 \end{tabular}
 \end{center}
-\[ T(n) = ?\]
+\item In the worst case, the "right" element is always the smallest or largest element in the array, leading to a seperation of the array to 2 sub arrays of size 1, and $n - 1$. Which leads to the following time complexity formula:
+\[ T(n) = T(n-1) + n \]
+\item Proof by induction that $ T(n) \in \theta(n^2)$:
+\item induction base: $n = 1$:
+\item $ 0 \leq c_1 \cdot 1^2 \leq T(1) = 1 \leq c_2 \cdot 1^2$ so $ c_1 = 1, c_2 = 1$
+
+\item Induction step
+
+\item $T(n) = T(n - 1) - n = T(n-2) + n - 1 +n = T(n - 3) + n- 2 +2n-1 = ... = T(n-i) + i \cdot n - \sum_{k=1}^{i-1} k = T(n-i) + i \cdot n - \frac{i \cdot (i-1)}{2}$
+\item We want to find the i that will bring us to T(1) - the stopping condition: $ i = n - 1 $.
+\item $T(n) = T(1) + n^2 - n - \frac{n^2}{2} + n + \frac{n}{2} - 1= T(1) + \frac{n^2}{2} + \frac{n}{2} - 1= \theta(1) + \theta(n^2) + \theta(n) = \theta(n^2)$
 
 \end{answer}
 
