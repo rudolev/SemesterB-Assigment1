@@ -412,9 +412,9 @@ Since \( \log c \) is a constant, we have:
 \]
 
 \section*{6. \( \log^k(n) \in O(n^\epsilon) \) for constants \( k \geq 1 \) and \( 1 > \epsilon > 0 \) }
-
+\item We need to prove that:
 \item \begin{center} $\log^k(n) \leq c \cdot n ^\epsilon$ \end{center}
-now we log both sides: 
+for constants $c, n > n_0$. We will log both sides: 
 \begin{center}
 $\log(\log^k(n)) \leq log(c \cdot n^ \epsilon) = \log(c) + \epsilon \cdot 
 log(n)$ \end{center}
@@ -433,7 +433,15 @@ According to what we know about $\epsilon$ and k, $ 1 \leq x$ so the inequality 
 
 
 \section*{7. \( n^k \in O((1+\epsilon)^n) \) for constants \( k \) and \( \epsilon > 0 \) }
-?
+
+\item We need to prove that:
+\item \begin{center} $n^k \leq c \cdot (1+\epsilon)^n$ \end{center}
+for constants $c, n > n_0$. We will log both sides and choose $c = 1$: 
+\begin{center} 
+$\log(n^k) = k \cdot \log(n) \leq \log((1+\epsilon)^n) = n \cdot log(1 + \epsilon)$
+\end{center}
+We learned in class that $\log(n) \in O(n)$, so this inequality holds for certain $n_0$.
+
 \end{answer}
 
 \newpage
